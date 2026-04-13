@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import HelloWorld from './components/HelloWorld.vue'
+import AppRoot from 'app/ui/App.vue'
 </script>
 
 <template>
-  <HelloWorld />
+  <AppRoot />
 </template>
