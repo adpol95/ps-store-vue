@@ -122,6 +122,40 @@ export default [
             ],
             "simple-import-sort/exports": "error",
 
+            // Запрещаем глубокие импорты внутри слоёв (мимо public API)
+            "no-restricted-imports": [
+                "error",
+                {
+                    patterns: [
+                        {
+                            group: ["pages/**", "!pages", "!pages/*"],
+                            message:
+                                "Импортируй из public API: `pages` или `pages/<slice>` (не используй `pages/**`)."
+                        },
+                        {
+                            group: ["widgets/**", "!widgets", "!widgets/*"],
+                            message:
+                                "Импортируй из public API: `widgets` или `widgets/<slice>` (не используй `widgets/**`)."
+                        },
+                        {
+                            group: ["features/**", "!features", "!features/*"],
+                            message:
+                                "Импортируй из public API: `features` или `features/<slice>` (не используй `features/**`)."
+                        },
+                        {
+                            group: ["entities/**", "!entities", "!entities/*"],
+                            message:
+                                "Импортируй из public API: `entities` или `entities/<slice>` (не используй `entities/**`)."
+                        },
+                        {
+                            group: ["shared/**", "!shared", "!shared/*"],
+                            message:
+                                "Импортируй из public API: `shared` или `shared/<segment>` (не используй `shared/**`)."
+                        }
+                    ]
+                }
+            ],
+
             // Границы слоёв (FSD)
             "boundaries/dependencies": [
                 "error",
