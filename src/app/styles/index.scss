@@ -1,0 +1,34 @@
+@use "./reset";
+@use "./fonts";
+
+:root {
+    --color-accent: #18b7be;
+    --color-danger: #ff5e5e;
+
+    --color-text: #f9f7f0;
+    --color-text-muted: #a0a0a0;
+
+    --color-bg: #072a40;
+    --color-surface: #178ca4;
+    --color-border: rgba(249, 247, 240, 0.18);
+
+    --shadow-soft: 0 0 2px rgba(0, 0, 0, 0.2);
+
+    --font-sans: "Montserrat", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    --font-mono:
+        ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
+        "Courier New", monospace;
+}
+
+html,
+body,
+#app {
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    font-family: var(--font-sans);
+    background: var(--color-bg);
+    color: var(--color-text);
+}
