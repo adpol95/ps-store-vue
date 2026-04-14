@@ -1,4 +1,4 @@
-import "./style.css";
+import "app/styles/index.scss";
 
 import { createApp } from "app";
 
