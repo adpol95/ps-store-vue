@@ -1,2 +1,1 @@
-export { createApp } from './main'
-
+export { createApp } from "./main";

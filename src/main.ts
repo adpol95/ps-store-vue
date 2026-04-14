@@ -1,4 +1,5 @@
-import './style.css'
-import { createApp } from 'app'
+import "./style.css";
 
-createApp().mount('#app')
+import { createApp } from "app";
+
+createApp().mount("#app");
