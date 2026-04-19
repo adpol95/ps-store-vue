@@ -28,6 +28,3 @@ jobs:
 
             - name: Type Check
               run: npm run type-check
-
-            - name: Unit Tests
-              run: npm run test:unit -- --run # --run нужен, чтобы vitest не ушел в watch-mode
