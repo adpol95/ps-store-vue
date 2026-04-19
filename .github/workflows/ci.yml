@@ -19,7 +19,6 @@ jobs:
               with:
                   node-version: "20" # Используем версию из вашего блока engines
                   cache: "npm"
-
             - name: Install dependencies
               run: npm ci
 
@@ -28,3 +27,6 @@ jobs:
 
             - name: Type Check
               run: npm run type-check
+
+            - name: Unit Tests
+              run: npm run test:unit -- --run

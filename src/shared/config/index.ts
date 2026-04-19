@@ -1,2 +1,2 @@
 export { env } from "./env";
-export { colors, theme } from "./theme";
+export { theme } from "./theme";
