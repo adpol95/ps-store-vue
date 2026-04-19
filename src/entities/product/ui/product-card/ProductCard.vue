@@ -12,7 +12,7 @@ withDefaults(defineProps<Props>(), {});
 </script>
 
 <template>
-    <RouterLink :to="linkTo" class="game-pack">
+    <div class="game-pack">
         <div class="game-pack__top">
             <img :src="image" :alt="imageAlt" />
             <div class="game-pack__price">{{ price }}</div>
@@ -30,7 +30,7 @@ withDefaults(defineProps<Props>(), {});
                 <slot name="actions" />
             </div>
         </div>
-    </RouterLink>
+    </div>
 </template>
 
 <style scoped>
