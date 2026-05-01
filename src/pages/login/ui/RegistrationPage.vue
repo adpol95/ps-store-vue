@@ -282,19 +282,27 @@ const handleRegister = async () => {
     color: var(--color-accent);
 }
 
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
 .field-label,
 .form-group label {
     font-weight: 600;
     display: flex;
     align-items: center;
-    gap: 0.5rem;
+    gap: 0.65rem;
     color: var(--color-text-muted);
+    font-size: 1.1rem;
+    margin-bottom: 0.25rem;
 }
 
 .birthdate-grid {
     display: grid;
     grid-template-columns: 1fr 1fr 1.5fr;
-    gap: 1rem;
+    gap: 1.25rem;
 }
 
 .field-hint {
