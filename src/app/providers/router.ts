@@ -3,6 +3,7 @@ import { createRouter, createWebHistory, type RouteRecordRaw } from "vue-router"
 import { useSessionStore } from "@/entities/session";
 import { HomePage, LoginPage, ProfilePage } from "@/pages";
 import { BasketPage } from "@/pages/basket";
+import { RegistrationPage } from "@/pages/login";
 import { NewsDetailsPage } from "@/pages/news-details";
 import { PaymentPage } from "@/pages/payment";
 import ProductDetailsPage from "@/pages/product-details/ui/ProductDetailsPage.vue";
@@ -62,8 +63,12 @@ const routes: RouteRecordRaw[] = [
     {
         path: "/authorization",
         children: [
-            { path: "", component: LoginPage },
-            { path: "registration", component: HomePage },
+            { path: "", name: "login", component: LoginPage },
+            {
+                path: "registration",
+                name: "registration",
+                component: RegistrationPage
+            },
             { path: "account-setting", component: HomePage }
         ]
     },

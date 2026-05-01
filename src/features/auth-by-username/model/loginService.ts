@@ -6,6 +6,15 @@ interface LoginResponse {
     profile: User;
 }
 
+export interface RegisterPayload {
+    userName: string;
+    password?: string;
+    country: string;
+    avatar: string;
+    birthDay: string;
+    cart: any[];
+}
+
 export async function loginByUsername(
     userName: string,
     password: string
@@ -16,6 +25,10 @@ export async function loginByUsername(
     });
 
     return response.data;
+}
+
+export async function register(payload: RegisterPayload): Promise<void> {
+    await axiosInstance.post("/authorization", payload);
 }
 
 export async function setOnlineStatus(userId: string, isOnline: boolean): Promise<void> {
