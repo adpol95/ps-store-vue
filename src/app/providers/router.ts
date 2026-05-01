@@ -1,12 +1,13 @@
 import { createRouter, createWebHistory, type RouteRecordRaw } from "vue-router";
 
 import { useSessionStore } from "@/entities/session";
+import HomePage from "@/pages/home/ui/HomePage.vue";
 
 const routes: RouteRecordRaw[] = [
     {
         path: "/",
         name: "home",
-        component: () => import("@/pages/home/ui/HomePage.vue")
+        component: HomePage
     },
     {
         path: "/login",
@@ -25,7 +26,7 @@ const routes: RouteRecordRaw[] = [
     },
     {
         path: "/consoles",
-        name: "games",
+        name: "consoles",
         component: () => import("@/pages/products/ui/ProductsPage.vue")
     },
     {
@@ -46,7 +47,7 @@ const routes: RouteRecordRaw[] = [
     {
         path: "/news",
         name: "news",
-        component: () => import("@/pages/home/ui/HomePage.vue")
+        component: HomePage
     },
     {
         path: "/news/:id",
