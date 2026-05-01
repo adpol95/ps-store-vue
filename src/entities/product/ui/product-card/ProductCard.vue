@@ -18,7 +18,7 @@ defineProps<Props>();
                     class="product-card__image"
                 />
                 <div v-if="product.price" class="product-card__price">
-                    {{ product.price }} ₽
+                    {{ product.price }}
                 </div>
             </div>
         </RouterLink>
