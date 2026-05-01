@@ -1,4 +1,6 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { CartSidebar } from "@/widgets";
+</script>
 
 <template>
     <div class="main-layout">
@@ -11,6 +13,7 @@
         <footer class="main-layout__footer">
             <slot name="footer" />
         </footer>
+        <CartSidebar />
     </div>
 </template>
 
@@ -23,9 +26,6 @@
 
     &__content {
         flex: 1;
-        padding: 2rem;
-        max-width: 1200px;
-        margin: 0 auto;
         width: 100%;
         box-sizing: border-box;
     }

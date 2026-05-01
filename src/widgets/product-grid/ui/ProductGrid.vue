@@ -19,7 +19,7 @@ defineProps<Props>();
             class="product-grid__item"
         >
             <template #actions>
-                <AddToCart />
+                <AddToCart :product="product" />
             </template>
         </ProductCard>
     </div>
