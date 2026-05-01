@@ -4,6 +4,20 @@ This file serves as the main entry point for Gemini CLI instructions. It imports
 
 ---
 
+## Custom Directives
+
+- **Directive: "ship it"**
+    - **Goal:** Automatically stage, commit, and push all current changes.
+    - **Process:**
+        1. Perform `git status` and `git diff` to analyze all changes (staged and unstaged).
+        2. Group changes into atomic commits by their "responsibility zones" (e.g., specific FSD slices, shared UI components, or configuration files).
+        3. For each group, generate a commit message following the **Conventional Commits** specification (as defined in Global Personal Memory).
+        4. Execute `git add` for each group and `git commit`.
+        5. After all commits are created, run `npm run typecheck` and `npm run lint` (if applicable) to ensure stability.
+        6. If checks pass, execute `git push`.
+
+---
+
 ## <!-- import ./docs/project-overview.md -->
 
 ## <!-- import ./docs/tech-stack.md -->
