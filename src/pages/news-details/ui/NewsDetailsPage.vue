@@ -44,11 +44,10 @@ const goBack = () => router.back();
 
         <div class="news-details">
             <div class="container">
-                <Button variant="ghost" class="news-details__back" @click="goBack">
+                <Button variant="outline" class="news-details__back" @click="goBack">
                     <ArrowLeft :size="20" />
                     <span>Back to News</span>
                 </Button>
-
                 <div v-if="isLoading" class="news-details__loading">
                     <Spinner size="lg" color="var(--color-accent)" />
                 </div>

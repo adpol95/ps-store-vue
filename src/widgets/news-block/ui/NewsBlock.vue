@@ -46,7 +46,7 @@ const setCategory = (category: NewsCategory | "all") => {
             <h2 class="news-block__title">Latest News</h2>
             <div class="news-block__filters">
                 <Button
-                    variant="ghost"
+                    variant="outline"
                     :class="{ 'news-block__filter--active': activeCategory === 'all' }"
                     @click="setCategory('all')"
                 >
@@ -55,7 +55,7 @@ const setCategory = (category: NewsCategory | "all") => {
                 <Button
                     v-for="cat in categories"
                     :key="cat"
-                    variant="ghost"
+                    variant="outline"
                     :class="{ 'news-block__filter--active': activeCategory === cat }"
                     @click="setCategory(cat)"
                 >
