@@ -8,6 +8,9 @@
 - Move complex logic to Composables (similar to hooks in React).
 - Component file names must be PascalCase (e.g., MyComponent.vue).
 - Follow a strict FSD architecture.
+- Never use !important
+- Always use css variables
+- Never use "any" (TS)
 - **Composition API:** Always use `<script setup>` with TypeScript.
 - **Path Aliases:**
     - `@/` points to `src/`.
