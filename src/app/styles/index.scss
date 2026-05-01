@@ -3,6 +3,7 @@
 
 :root {
     --color-accent: #18b7be;
+    --color-accent-rgb: 24, 183, 190;
     --color-danger: #ff5e5e;
     --color-success: #4caf50;
     --color-warning: #ff9800;
@@ -12,10 +13,12 @@
     --color-text-muted: #a0a0a0;
 
     --color-bg: #072a40;
+    --color-bg-rgb: 7, 42, 64;
     --color-surface: #178ca4;
-    --color-border: rgba(249, 247, 240, 0.18);
+    --color-surface-rgb: 23, 140, 164;
+    --color-border: rgba(249, 247, 240, 0.1);
 
-    --shadow-soft: 0 0 2px rgba(0, 0, 0, 0.2);
+    --shadow-soft: 0 4px 20px rgba(0, 0, 0, 0.3);
 
     --font-sans: "Montserrat", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
     --font-mono:
@@ -34,4 +37,18 @@ body {
     font-family: var(--font-sans);
     background: var(--color-bg);
     color: var(--color-text);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
 }
