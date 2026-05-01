@@ -1,75 +1,75 @@
 import { createRouter, createWebHistory, type RouteRecordRaw } from "vue-router";
 
 import { useSessionStore } from "@/entities/session";
-import { HomePage, LoginPage, ProfilePage } from "@/pages";
-import { BasketPage } from "@/pages/basket";
-import { RegistrationPage } from "@/pages/login";
-import { NewsDetailsPage } from "@/pages/news-details";
-import { PaymentPage } from "@/pages/payment";
-import ProductDetailsPage from "@/pages/product-details/ui/ProductDetailsPage.vue";
-import ProductsPage from "@/pages/products/ui/ProductsPage.vue";
 
 const routes: RouteRecordRaw[] = [
     {
         path: "/",
         name: "home",
-        component: HomePage
+        component: () => import("@/pages/home/ui/HomePage.vue")
     },
     {
         path: "/login",
         name: "login",
-        component: LoginPage
+        component: () => import("@/pages/login/ui/LoginPage.vue")
     },
     {
         path: "/games",
         name: "games",
-        component: ProductsPage
+        component: () => import("@/pages/products/ui/ProductsPage.vue")
     },
     {
         path: "/games/:id",
         name: "game-details",
-        component: ProductDetailsPage
+        component: () => import("@/pages/product-details/ui/ProductDetailsPage.vue")
     },
     {
         path: "/consoles",
-        name: "consoles",
-        component: ProductsPage
+        name: "games",
+        component: () => import("@/pages/products/ui/ProductsPage.vue")
     },
     {
         path: "/consoles/:id",
         name: "console-details",
-        component: ProductDetailsPage
+        component: () => import("@/pages/product-details/ui/ProductDetailsPage.vue")
     },
     {
         path: "/accessories",
         name: "accessories",
-        component: ProductsPage
+        component: () => import("@/pages/products/ui/ProductsPage.vue")
     },
     {
         path: "/accessories/:id",
         name: "accessory-details",
-        component: ProductDetailsPage
+        component: () => import("@/pages/product-details/ui/ProductDetailsPage.vue")
     },
     {
         path: "/news",
         name: "news",
-        component: HomePage
+        component: () => import("@/pages/home/ui/HomePage.vue")
     },
     {
         path: "/news/:id",
         name: "news-details",
-        component: NewsDetailsPage
+        component: () => import("@/pages/news-details/ui/NewsDetailsPage.vue")
     },
     {
         path: "/authorization",
         children: [
-            { path: "", name: "login", component: LoginPage },
+            {
+                path: "",
+                name: "login-alt",
+                component: () => import("@/pages/login/ui/LoginPage.vue")
+            },
             {
                 path: "registration",
                 name: "registration",
-                component: RegistrationPage
+                component: () => import("@/pages/login/ui/RegistrationPage.vue")
             },
-            { path: "account-setting", component: HomePage }
+            {
+                path: "account-setting",
+                component: () => import("@/pages/home/ui/HomePage.vue")
+            }
         ]
     },
     {
@@ -80,7 +80,7 @@ const routes: RouteRecordRaw[] = [
                 path: "",
                 name: "profile",
                 meta: { requiresAuth: true },
-                component: ProfilePage
+                component: () => import("@/pages/profile/ui/ProfilePage.vue")
             },
             {
                 path: "friends",
@@ -88,17 +88,17 @@ const routes: RouteRecordRaw[] = [
                     {
                         path: "",
                         meta: { requiresAuth: true },
-                        component: HomePage
+                        component: () => import("@/pages/home/ui/HomePage.vue")
                     },
                     {
                         path: "add",
                         meta: { requiresAuth: true },
-                        component: HomePage
+                        component: () => import("@/pages/home/ui/HomePage.vue")
                     },
                     {
                         path: ":id",
                         meta: { requiresAuth: true },
-                        component: ProfilePage
+                        component: () => import("@/pages/profile/ui/ProfilePage.vue")
                     }
                 ]
             }
@@ -107,16 +107,30 @@ const routes: RouteRecordRaw[] = [
     {
         path: "/conundrums",
         children: [
-            { path: "", component: HomePage },
-            { path: "riddles", component: HomePage },
-            { path: "schoolPrg", component: HomePage }
+            { path: "", component: () => import("@/pages/home/ui/HomePage.vue") },
+            {
+                path: "riddles",
+                component: () => import("@/pages/home/ui/HomePage.vue")
+            },
+            {
+                path: "schoolPrg",
+                component: () => import("@/pages/home/ui/HomePage.vue")
+            }
         ]
     },
     {
         path: "/basket",
         children: [
-            { path: "", name: "basket", component: BasketPage },
-            { path: "payment", name: "payment", component: PaymentPage }
+            {
+                path: "",
+                name: "basket",
+                component: () => import("@/pages/basket/ui/BasketPage.vue")
+            },
+            {
+                path: "payment",
+                name: "payment",
+                component: () => import("@/pages/payment/ui/PaymentPage.vue")
+            }
         ]
     }
 ];

@@ -2,8 +2,8 @@
 import { ref } from "vue";
 import { useRouter } from "vue-router";
 
-import { useSessionStore } from "entities/session";
-import { Button, Input } from "shared/ui";
+import { useSessionStore } from "@/entities/session";
+import { Button, Input } from "@/shared/ui";
 
 import { loginByUsername, setOnlineStatus } from "../model/loginService";
 
