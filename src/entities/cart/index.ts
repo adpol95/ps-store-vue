@@ -1,1 +1,2 @@
-export * from "./model";
+export { useCartStore } from "./model/store";
+export type { CartItem } from "./model/store";
