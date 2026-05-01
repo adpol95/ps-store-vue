@@ -3,6 +3,7 @@ export { Button } from "./button";
 export { Card } from "./card";
 export { Checkbox } from "./checkbox";
 export { Input } from "./input";
+export { MainLayout } from "./layout";
 export { Modal } from "./modal";
 export { Select } from "./select";
 export { Skeleton } from "./skeleton";

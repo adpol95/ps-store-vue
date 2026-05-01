@@ -1,153 +1,130 @@
 <script setup lang="ts">
+import type { GameProduct } from "../../model/types";
+
 interface Props {
-    title: string;
-    genre: string;
-    price: number;
-    image: string;
-    imageAlt: string;
-    linkTo: string;
+    product: GameProduct;
 }
 
-withDefaults(defineProps<Props>(), {});
+defineProps<Props>();
 </script>
 
 <template>
-    <RouterLink :to="linkTo" class="game-pack">
-        <div class="game-pack__top">
-            <img :src="image" :alt="imageAlt" />
-            <div class="game-pack__price">{{ price }}</div>
-        </div>
-        <div class="game-pack__down">
-            <div class="game-pack__down--left">
-                <h4 class="game-pack__down--genre">
-                    {{ genre }}
-                </h4>
-                <h4 class="game-pack__down--title">
-                    {{ title }}
-                </h4>
+    <div class="product-card">
+        <RouterLink :to="`/games/${product._id}`" class="product-card__image-link">
+            <div class="product-card__image-container">
+                <img
+                    :src="product.img"
+                    :alt="product.title"
+                    class="product-card__image"
+                />
+                <div v-if="product.price" class="product-card__price">
+                    {{ product.price }} ₽
+                </div>
             </div>
-            <div class="game-pack__down--right">
+        </RouterLink>
+
+        <div class="product-card__content">
+            <div class="product-card__info">
+                <span class="product-card__genre">{{ product.genre }}</span>
+                <h3 class="product-card__title">{{ product.title }}</h3>
+            </div>
+            <div class="product-card__actions">
                 <slot name="actions" />
             </div>
         </div>
-    </RouterLink>
+    </div>
 </template>
 
-<style scoped>
-.game-pack {
+<style scoped lang="scss">
+.product-card {
     display: flex;
     flex-direction: column;
-    position: relative;
-    box-shadow: var(--shadow-soft);
-    border-radius: 2em;
-    background: color-mix(in srgb, var(--color-text) 88%, var(--color-bg));
-    text-decoration: none;
-}
+    background: color-mix(in srgb, var(--color-surface) 10%, var(--color-bg));
+    border-radius: 1.5rem;
+    overflow: hidden;
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+    border: 1px solid var(--color-border);
+    height: 100%;
 
-@media (max-width: 810px) {
-    .game-pack {
+    &:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+
+        .product-card__title {
+            color: var(--color-accent);
+        }
+    }
+
+    &__image-link {
+        text-decoration: none;
+    }
+
+    &__image-container {
+        position: relative;
+        aspect-ratio: 16 / 9;
+        overflow: hidden;
+        background: #000;
+    }
+
+    &__image {
         width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s ease;
     }
-}
 
-@media (min-width: 810.2px) {
-    .game-pack {
-        width: 22.5%;
+    &:hover &__image {
+        transform: scale(1.05);
     }
-}
 
-@media (min-width: 1200px) {
-    .game-pack {
-        width: 23.2%;
+    &__price {
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+        background: var(--color-accent);
+        color: white;
+        padding: 0.5rem 1rem;
+        border-radius: 0.75rem;
+        font-weight: 700;
+        font-size: 0.9rem;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     }
-}
 
-.game-pack .game-pack__top {
-    height: 13em;
-    background: var(--color-text);
-    border-radius: 2em;
-}
+    &__content {
+        padding: 1.5rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        flex: 1;
+    }
 
-.game-pack .game-pack__top img {
-    box-shadow: var(--shadow-soft);
-    border-radius: 2em;
-    width: 100%;
-    height: 13em;
-    object-fit: cover;
-    object-position: 0 25%;
-}
+    &__info {
+        display: flex;
+        flex-direction: column;
+        gap: 0.25rem;
+    }
 
-.game-pack .game-pack__top .game-pack__price {
-    position: absolute;
-    top: 1em;
-    right: 1em;
-    background: var(--color-surface);
-    color: var(--color-text);
-    box-shadow: var(--shadow-soft);
-    padding: 0.7em;
-    border-radius: 0.7em;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: 500;
-}
+    &__genre {
+        color: var(--color-text-muted);
+        font-size: 0.8rem;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
 
-.game-pack .game-pack__down {
-    padding: 2.5em 1em 1.5em 1em;
-    border-bottom-left-radius: 2em;
-    border-bottom-right-radius: 2em;
-    background: color-mix(in srgb, var(--color-text) 88%, var(--color-bg));
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    cursor: pointer;
-    justify-content: space-between;
-}
+    &__title {
+        margin: 0;
+        font-size: 1.1rem;
+        font-weight: 600;
+        color: var(--color-text);
+        transition: color 0.2s;
+        line-height: 1.3;
+    }
 
-.game-pack .game-pack__down:hover .game-pack__down--title {
-    color: var(--color-accent);
-}
-
-.game-pack .game-pack__down:hover .game-pack__down--right {
-    background: var(--color-accent);
-}
-
-.game-pack .game-pack__down .game-pack__down--left {
-    display: flex;
-    flex-direction: column;
-    row-gap: 0.3em;
-}
-
-.game-pack .game-pack__down .game-pack__down--left .game-pack__down--title {
-    color: var(--color-bg);
-    margin: 0;
-    padding: 0 0.5em;
-    transition: color 0.3s;
-}
-
-.game-pack .game-pack__down .game-pack__down--left .game-pack__down--genre {
-    color: var(--color-text-muted);
-    margin: 0;
-    padding: 0 0.5em;
-    font-weight: 300;
-}
-
-.game-pack .game-pack__down .game-pack__down--right {
-    background: var(--color-bg);
-    display: flex;
-    align-items: center;
-    padding: 0.8em;
-    border-radius: 2em;
-    box-shadow: var(--shadow-soft);
-    transition: background 0.3s;
-}
-
-.game-pack .game-pack__down .game-pack__down--right :deep(.product-card__button),
-.game-pack .game-pack__down .game-pack__down--right :deep(.btn) {
-    padding: 0;
-    border: none;
-    background: transparent;
-    display: flex;
-    align-items: center;
+    &__actions {
+        display: flex;
+        align-items: center;
+    }
 }
 </style>
