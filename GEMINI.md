@@ -14,6 +14,12 @@ This file serves as the main entry point for Gemini CLI instructions. It imports
 
 ## <!-- import ./docs/git-workflow.md -->
 
+# Reference of target project (Legacy)
+
+- There is two repository, they located on the same level of current project folder entry (ps-store-vue).
+- Frontend: ps-store-fr
+- Backend: ps-store-bck
+
 # Building and Running
 
 ## Key Commands
