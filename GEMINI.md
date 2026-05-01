@@ -24,6 +24,31 @@ Rewrite the legacy `ps-store-fr` (frontend) and `ps-store-bck` (backend) project
 - **Testing:** Vitest
 - **Linting/Formatting:** ESLint, Prettier
 
+## Before offer changes
+
+- **Testing**: Always testing in browser the result of changes.
+- **Refactoring**: Always check refactoring ability before offering changes. If code can be better - do it.
+
+# Coding Rules
+
+- Write only in TypeScript. Avoid using `any`.
+- Use `ref()` instead of `reactive()` for basic and complex states.
+- All components must have prop typing via `defineProps<{...}>()`.
+- Move complex logic to Composables (similar to hooks in React).
+- Component file names must be PascalCase (e.g., MyComponent.vue).
+- Follow a strict FSD architecture.
+- **Composition API:** Always use `<script setup>` with TypeScript.
+- **Path Aliases:**
+    - `@/` points to `src/`.
+    - Absolute imports are configured for `app/`, `entities/`, `features/`, `pages/`, `shared/`, `widgets/` via `tsconfig.json`.
+- **FSD Enforcement:** Adhere to FSD layers. Avoid cross-imports within the same layer (e.g., a feature importing another feature). Use `shared/api` for global API configuration.
+
+# Prohibitions
+
+- No Options API (data, methods, etc.).
+- Don't use external libraries if the task can be solved with Vue 3's core capabilities.
+- Don't make components too long—suggest breaking them up.
+
 ## Architecture (FSD)
 
 The project is structured according to Feature-Sliced Design:
@@ -34,6 +59,7 @@ The project is structured according to Feature-Sliced Design:
 - `src/features`: User interactions with business value (e.g., AddToCart, Login).
 - `src/entities`: Business entities (e.g., Product, Cart, User).
 - `src/shared`: Reusable infrastructure (API, UI components, config, libs).
+    - **UI Library:** Includes `Button`, `Input`, `Checkbox`, `Select`, `Badge`, `Skeleton`, `Card`, `Spinner`, `Modal`.
 
 # Building and Running
 
@@ -49,14 +75,6 @@ The project is structured according to Feature-Sliced Design:
 
 # Development Conventions
 
-## Coding Style
-
-- **Composition API:** Always use `<script setup>` with TypeScript.
-- **Path Aliases:**
-    - `@/` points to `src/`.
-    - Absolute imports are configured for `app/`, `entities/`, `features/`, `pages/`, `shared/`, `widgets/` via `tsconfig.json`.
-- **FSD Enforcement:** Adhere to FSD layers. Avoid cross-imports within the same layer (e.g., a feature importing another feature). Use `shared/api` for global API configuration.
-
 ## Environment Variables
 
 - `VITE_API_BASE_URL`: Base URL for the Axios instance (defaults to `/api`).
@@ -70,14 +88,5 @@ The project is structured according to Feature-Sliced Design:
 ## Git Workflow
 
 - **Pre-commit Hooks:** Husky and lint-staged are used to run ESLint and Prettier before commits.
+- **Divided commits:** Always create multiple and divided commits by areas of responsibility of the written code.
 - **Commit Messages:** Follow a clear and concise format.
-
-# Implementation Roadmap (7-Day Sprint)
-
-1. **Day 1:** Routing, Layout, UI Base.
-2. **Day 2:** Catalog API Integration (Vue Query).
-3. **Day 3:** Filters, Sorting, Query Params synchronization.
-4. **Day 4:** Product Detail Page & Dynamic Routes.
-5. **Day 5:** Cart State Management (Pinia + LocalStorage).
-6. **Day 6:** Mock Authentication & Route Guards.
-7. **Day 7:** Refactoring, UX Polishing, Final Testing.
