@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, useId } from "vue";
+import { computed } from "vue";
 
 defineOptions({
     name: "BaseInput",
@@ -24,7 +24,7 @@ interface InputProps {
 
 const model = defineModel<string | number>();
 
-const generatedId = useId();
+const generatedId = Math.random().toString(36).slice(2, 11);
 const inputId = computed(() => props.id ?? `input-${generatedId}`);
 const errorId = computed(() => `error-${generatedId}`);
 </script>
