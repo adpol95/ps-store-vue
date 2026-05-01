@@ -194,11 +194,11 @@ const toggleCart = () => {
     .cart-btn {
         background: var(--color-accent);
         border: none;
-        box-shadow: 0 4px 15px rgba(23, 140, 164, 0.3);
+        box-shadow: 0 4px 15px rgba(var(--color-accent-rgb), 0.3);
 
         &:hover {
             transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(23, 140, 164, 0.4);
+            box-shadow: 0 6px 20px rgba(var(--color-accent-rgb), 0.4);
         }
     }
 

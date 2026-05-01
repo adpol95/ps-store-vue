@@ -37,25 +37,25 @@ import { Header, NewsBlock, ProductGrid } from "@/widgets";
                 <div class="bottom-categories">
                     <div class="row-list__container">
                         <div class="bottom-categories__logo">
-                            <Cloud color="#f9f7f0" :size="24" />
+                            <Cloud color="var(--color-white)" :size="24" />
                         </div>
                         <div class="bottom-categories__text">CLOUD STORAGE</div>
                     </div>
                     <div class="row-list__container">
                         <div class="bottom-categories__logo">
-                            <Network color="#f9f7f0" :size="24" />
+                            <Network color="var(--color-white)" :size="24" />
                         </div>
                         <div class="bottom-categories__text">INTERACTIVE NETWORK</div>
                     </div>
                     <div class="row-list__container">
                         <div class="bottom-categories__logo">
-                            <Coins color="#f9f7f0" :size="24" />
+                            <Coins color="var(--color-white)" :size="24" />
                         </div>
                         <div class="bottom-categories__text">EARN MONEY IN PLAY</div>
                     </div>
                     <div class="row-list__container">
                         <div class="bottom-categories__logo">
-                            <Filter color="#f9f7f0" :size="24" />
+                            <Filter color="var(--color-white)" :size="24" />
                         </div>
                         <div class="bottom-categories__text">BROWSE GAMES BY FILTER</div>
                     </div>
@@ -135,7 +135,11 @@ import { Header, NewsBlock, ProductGrid } from "@/widgets";
     padding-bottom: 5em;
 
     &__top-section {
-        background: linear-gradient(to bottom, var(--color-bg), var(--color-surface));
+        background: linear-gradient(
+            135deg,
+            var(--color-bg) 0%,
+            var(--color-surface) 100%
+        );
         height: auto;
         min-height: 33em;
         border-bottom-left-radius: 10vw;
@@ -252,7 +256,7 @@ import { Header, NewsBlock, ProductGrid } from "@/widgets";
         top: 1rem;
         right: 1.5rem;
         font-weight: 600;
-        background: var(--color-surface);
+        background: var(--color-accent);
         padding: 0.8rem 1.2rem;
         border-radius: 1.5rem;
         box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
@@ -290,7 +294,7 @@ import { Header, NewsBlock, ProductGrid } from "@/widgets";
 
     .row-list__container {
         padding: 1.2rem 1.5rem;
-        background: var(--color-text);
+        background: var(--color-white);
         color: var(--color-bg);
         font-weight: 700;
         font-size: 1rem;
@@ -308,12 +312,13 @@ import { Header, NewsBlock, ProductGrid } from "@/widgets";
 
         &:hover {
             transform: translateY(-5px);
-            background: white;
+            background: #ffffff;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
         }
 
         .bottom-categories__logo {
             display: flex;
-            background: var(--color-surface);
+            background: var(--color-accent);
             padding: 0.8rem;
             border-radius: 1.2rem;
             transition: background 0.3s;
@@ -423,27 +428,28 @@ import { Header, NewsBlock, ProductGrid } from "@/widgets";
 
     .bottom-section__block {
         flex: 1;
-        background: color-mix(in srgb, var(--color-text) 90%, black);
+        background: #f8fafc;
         border-radius: 2em;
         padding: clamp(1.5rem, 5vw, 3rem);
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
         display: flex;
         flex-direction: column;
         align-items: flex-start;
         gap: 1.5em;
+        border: 1px solid rgba(0, 0, 0, 0.03);
 
         .top-name-description {
             h4 {
                 color: var(--color-bg);
             }
             h3 {
-                color: black;
+                color: #1e293b;
                 font-size: clamp(1.5rem, 3vw, 2rem);
             }
         }
 
         .bottom-section__description {
-            color: #333;
+            color: #64748b;
             font-weight: 500;
             margin: 0;
             line-height: 1.5;
