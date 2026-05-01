@@ -167,7 +167,6 @@ const toggleCart = () => {
         padding: 10px !important;
         position: relative;
         border-radius: 12px;
-        overflow: hidden;
 
         @media (max-width: 480px) {
             padding: 6px !important;
@@ -204,17 +203,23 @@ const toggleCart = () => {
 
     &__cart-count {
         position: absolute;
-        top: -5px;
-        right: -5px;
-        background: white;
+        top: -4px;
+        right: -4px;
+        background: var(--color-white);
         color: var(--color-accent);
         font-size: 0.7rem;
         font-weight: 800;
-        padding: 2px 6px;
+        padding: 0 4px;
         border-radius: 10px;
-        min-width: 16px;
+        min-width: 18px;
+        height: 18px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
         text-align: center;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+        z-index: 10;
+        line-height: 1;
     }
 }
 </style>
