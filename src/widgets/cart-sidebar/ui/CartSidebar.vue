@@ -68,7 +68,7 @@ const handleUpdateQuantity = (id: string | number, delta: number) => {
                                 <div class="cart-item__info">
                                     <h4>{{ item.item.title }}</h4>
                                     <p class="cart-item__price">
-                                        {{ item.item.price }} ₽
+                                        {{ item.item.price }}
                                     </p>
                                     <div class="cart-item__actions">
                                         <div class="quantity-controls">
