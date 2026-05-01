@@ -3,7 +3,7 @@ import { Cloud, Coins, Filter, Network } from "@lucide/vue";
 
 import { MOCK_PRODUCTS } from "@/entities/product";
 import { MainLayout } from "@/shared/ui";
-import { Header, ProductGrid } from "@/widgets";
+import { Header, NewsBlock, ProductGrid } from "@/widgets";
 </script>
 
 <template>
@@ -73,6 +73,12 @@ import { Header, ProductGrid } from "@/widgets";
                     </RouterLink>
                 </div>
                 <ProductGrid :products="MOCK_PRODUCTS" />
+            </section>
+
+            <section class="home-page__news">
+                <div class="container">
+                    <NewsBlock />
+                </div>
             </section>
 
             <section class="home-page__bottom-section">
@@ -329,7 +335,8 @@ import { Header, ProductGrid } from "@/widgets";
     }
 }
 
-.home-page__products {
+.home-page__products,
+.home-page__news {
     max-width: 1200px;
     margin: 0 auto;
     width: 100%;
