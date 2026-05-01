@@ -102,10 +102,10 @@ const handleRegister = async () => {
         // Auto login
         const loginResponse = await loginByUsername(form.userName, form.password);
         const userProfile = loginResponse.profile as any;
-        sessionStore.setSession(loginResponse.token, {
-            ...(userProfile as User),
-            isOnline: true
-        });
+        sessionStore.setSession(
+            { ...(userProfile as User), isOnline: true },
+            loginResponse.token
+        );
         await setOnlineStatus(userProfile._id, true);
 
         alert("Congratulations! Account created.");
