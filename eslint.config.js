@@ -90,6 +90,14 @@ export default [
             "no-redeclare": "off", // Отключаем базовый, чтобы работал TS-вариант
 
             // Vue специфичные настройки
+            "vuejs-accessibility/label-has-for": [
+                "error",
+                {
+                    required: {
+                        some: ["nesting", "id"]
+                    }
+                }
+            ],
             "vue/multi-word-component-names": "off",
             "vue/define-macros-order": [
                 "error",

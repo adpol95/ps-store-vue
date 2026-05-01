@@ -3,10 +3,12 @@ import { Search, ShoppingBag, User } from "lucide-vue-next";
 import { storeToRefs } from "pinia";
 
 import { useCartStore } from "@/entities/cart";
+import { useSessionStore } from "@/entities/session";
 import { useAppStore } from "@/shared/model";
 import { Button } from "@/shared/ui";
 
 const cartStore = useCartStore();
+const sessionStore = useSessionStore();
 const appStore = useAppStore();
 const { totalCount } = storeToRefs(cartStore);
 
@@ -40,14 +42,24 @@ const toggleCart = () => {
                 >
                     <Search :size="20" />
                 </Button>
-                <Button
-                    variant="outline"
-                    size="sm"
-                    class="header__action-btn user-btn"
-                    aria-label="User profile"
-                >
-                    <User :size="20" />
-                </Button>
+                <RouterLink to="/psn">
+                    <Button
+                        variant="outline"
+                        size="sm"
+                        class="header__action-btn user-btn"
+                        :class="{ 'is-auth': sessionStore.isAuth }"
+                        aria-label="User profile"
+                    >
+                        <img
+                            v-if="sessionStore.isAuth && sessionStore.user?.avatar"
+                            :src="sessionStore.user.avatar"
+                            class="header__avatar"
+                            :alt="sessionStore.user.userName"
+                        />
+
+                        <User v-else :size="20" />
+                    </Button>
+                </RouterLink>
                 <Button
                     variant="primary"
                     size="sm"
@@ -155,6 +167,7 @@ const toggleCart = () => {
         padding: 10px !important;
         position: relative;
         border-radius: 12px;
+        overflow: hidden;
 
         @media (max-width: 480px) {
             padding: 6px !important;
@@ -165,6 +178,17 @@ const toggleCart = () => {
                 height: 18px;
             }
         }
+    }
+
+    &__avatar {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .user-btn.is-auth {
+        padding: 0 !important;
+        border-color: var(--color-accent);
     }
 
     .cart-btn {

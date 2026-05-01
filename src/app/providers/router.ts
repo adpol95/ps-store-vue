@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory, type RouteRecordRaw } from "vue-router";
 
-import HomePage from "@/pages/home/ui/HomePage.vue";
+import { useSessionStore } from "@/entities/session";
+import { HomePage, LoginPage, ProfilePage } from "@/pages";
 import ProductDetailsPage from "@/pages/product-details/ui/ProductDetailsPage.vue";
 import ProductsPage from "@/pages/products/ui/ProductsPage.vue";
 
@@ -9,6 +10,11 @@ const routes: RouteRecordRaw[] = [
         path: "/",
         name: "home",
         component: HomePage
+    },
+    {
+        path: "/login",
+        name: "login",
+        component: LoginPage
     },
     {
         path: "/games",
@@ -48,7 +54,7 @@ const routes: RouteRecordRaw[] = [
     {
         path: "/authorization",
         children: [
-            { path: "", component: HomePage },
+            { path: "", component: LoginPage },
             { path: "registration", component: HomePage },
             { path: "account-setting", component: HomePage }
         ]
@@ -59,8 +65,9 @@ const routes: RouteRecordRaw[] = [
         children: [
             {
                 path: "",
+                name: "profile",
                 meta: { requiresAuth: true },
-                component: HomePage
+                component: ProfilePage
             },
             {
                 path: "friends",
@@ -78,7 +85,7 @@ const routes: RouteRecordRaw[] = [
                     {
                         path: ":id",
                         meta: { requiresAuth: true },
-                        component: HomePage
+                        component: ProfilePage
                     }
                 ]
             }
@@ -104,4 +111,16 @@ const routes: RouteRecordRaw[] = [
 export const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
     routes
+});
+
+router.beforeEach((to, _from, next) => {
+    const sessionStore = useSessionStore();
+
+    if (to.meta.requiresAuth && !sessionStore.isAuth) {
+        next("/login");
+    } else if (to.path === "/login" && sessionStore.isAuth) {
+        next("/psn");
+    } else {
+        next();
+    }
 });
