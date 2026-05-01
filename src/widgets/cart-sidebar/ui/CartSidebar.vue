@@ -122,10 +122,16 @@ const handleUpdateQuantity = (id: string | number, delta: number) => {
                             </div>
                         </div>
                         <div class="footer-actions">
-                            <Button variant="primary" class="checkout-btn">
-                                Checkout
-                                <ArrowRight :size="20" />
-                            </Button>
+                            <RouterLink to="/basket" style="width: 100%">
+                                <Button
+                                    variant="primary"
+                                    class="checkout-btn"
+                                    @click="closeCart"
+                                >
+                                    Checkout
+                                    <ArrowRight :size="20" />
+                                </Button>
+                            </RouterLink>
                             <button class="clear-btn" @click="cartStore.clearCart">
                                 Clear Basket
                             </button>

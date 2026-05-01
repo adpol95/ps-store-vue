@@ -39,3 +39,18 @@ export async function deleteFriend(
         friends: updatedFriends
     });
 }
+
+export async function checkoutOrder(
+    userId: string,
+    payload: {
+        ownership: {
+            games: Array<{ _id: string; name: string }>;
+            consoles: Array<{ _id: string; name: string }>;
+            accessories: Array<{ _id: string; name: string }>;
+        };
+        wallet: number;
+        cart: any[];
+    }
+): Promise<void> {
+    await axiosInstance.patch(`/authorization/${userId}`, payload);
+}

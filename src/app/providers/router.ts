@@ -2,7 +2,9 @@ import { createRouter, createWebHistory, type RouteRecordRaw } from "vue-router"
 
 import { useSessionStore } from "@/entities/session";
 import { HomePage, LoginPage, ProfilePage } from "@/pages";
+import { BasketPage } from "@/pages/basket";
 import { NewsDetailsPage } from "@/pages/news-details";
+import { PaymentPage } from "@/pages/payment";
 import ProductDetailsPage from "@/pages/product-details/ui/ProductDetailsPage.vue";
 import ProductsPage from "@/pages/products/ui/ProductsPage.vue";
 
@@ -108,8 +110,8 @@ const routes: RouteRecordRaw[] = [
     {
         path: "/basket",
         children: [
-            { path: "", component: HomePage },
-            { path: "payment", component: HomePage }
+            { path: "", name: "basket", component: BasketPage },
+            { path: "payment", name: "payment", component: PaymentPage }
         ]
     }
 ];

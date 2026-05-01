@@ -2,13 +2,25 @@ import { computed, ref, watch } from "vue";
 import { defineStore } from "pinia";
 
 import type { AnyProduct } from "@/entities/product";
+import { useSessionStore } from "@/entities/session";
 
+import { calculateShipAndTax } from "./calculateShipAndTax";
 import type { CartProduct } from "./types";
 
 const CART_STORAGE_KEY = "ps_store_cart";
 
 export const useCartStore = defineStore("cart", () => {
+    const sessionStore = useSessionStore();
     const items = ref<CartProduct[]>([]);
+    const selectedCountry = ref("Argentina");
+
+    const activeCountry = computed(
+        () => sessionStore.user?.country || selectedCountry.value
+    );
+
+    const shipAndTax = computed(() => calculateShipAndTax(activeCountry.value));
+    const shippingCost = computed(() => shipAndTax.value[0]);
+    const taxCost = computed(() => shipAndTax.value[1]);
 
     // Load from localStorage
     const savedCart = localStorage.getItem(CART_STORAGE_KEY);
@@ -38,15 +50,20 @@ export const useCartStore = defineStore("cart", () => {
         return 0;
     };
 
+    const subtotal = computed(() =>
+        items.value.reduce((sum, item) => {
+            const product = item.item as any;
+            const price = product.Price || product.price || 0;
+            return sum + parsePrice(price) * item.quantity;
+        }, 0)
+    );
+
     const totalCount = computed(() =>
         items.value.reduce((sum, item) => sum + item.quantity, 0)
     );
 
-    const totalPrice = computed(() =>
-        items.value.reduce(
-            (sum, item) => sum + parsePrice(item.item.price) * item.quantity,
-            0
-        )
+    const totalPrice = computed(
+        () => subtotal.value + shippingCost.value + taxCost.value
     );
 
     const isEmpty = computed(() => items.value.length === 0);
@@ -78,14 +95,24 @@ export const useCartStore = defineStore("cart", () => {
         items.value = [];
     }
 
+    function setSelectedCountry(country: string) {
+        selectedCountry.value = country;
+    }
+
     return {
         items,
+        selectedCountry,
+        activeCountry,
         totalCount,
+        subtotal,
+        shippingCost,
+        taxCost,
         totalPrice,
         isEmpty,
         addToCart,
         removeFromCart,
         updateQuantity,
-        clearCart
+        clearCart,
+        setSelectedCountry
     };
 });
