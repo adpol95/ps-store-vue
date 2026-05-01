@@ -9,6 +9,7 @@ export const useAddedToCart = () => {
     };
 
     return {
-        handleAddToCart
+        handleAddToCart,
+        connected
     };
 };
