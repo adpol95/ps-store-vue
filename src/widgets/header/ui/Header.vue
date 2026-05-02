@@ -15,6 +15,10 @@ const { totalCount } = storeToRefs(cartStore);
 const toggleCart = () => {
     appStore.toggleCart();
 };
+
+const handleSearch = () => {
+    console.warn("Search functionality coming soon...");
+};
 </script>
 
 <template>
@@ -39,10 +43,11 @@ const toggleCart = () => {
                     size="sm"
                     class="header__action-btn"
                     aria-label="Search"
+                    @click="handleSearch"
                 >
                     <Search :size="20" />
                 </Button>
-                <RouterLink to="/psn">
+                <RouterLink to="/psn" class="user-btn-link">
                     <Button
                         variant="outline"
                         size="sm"
@@ -156,8 +161,8 @@ const toggleCart = () => {
             gap: 0.5rem;
         }
 
-        .user-btn {
-            @media (max-width: 480px) {
+        .user-btn-link {
+            @media (max-width: 768px) {
                 display: none;
             }
         }
