@@ -55,6 +55,10 @@ const routes: RouteRecordRaw[] = [
         component: () => import("@/pages/news-details/ui/NewsDetailsPage.vue")
     },
     {
+        path: "/registration",
+        redirect: "/authorization/registration"
+    },
+    {
         path: "/authorization",
         children: [
             {
@@ -141,14 +145,13 @@ export const router = createRouter({
     routes
 });
 
-router.beforeEach((to, _from, next) => {
+router.beforeEach((to) => {
     const sessionStore = useSessionStore();
 
     if (to.meta.requiresAuth && !sessionStore.isAuth) {
-        next("/login");
-    } else if (to.path === "/login" && sessionStore.isAuth) {
-        next("/psn");
-    } else {
-        next();
+        return "/login";
+    }
+    if (to.path === "/login" && sessionStore.isAuth) {
+        return "/psn";
     }
 });
