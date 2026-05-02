@@ -164,17 +164,19 @@ const toggleCart = () => {
     }
 
     &__action-btn {
-        padding: 10px !important;
-        position: relative;
-        border-radius: 12px;
+        &.base-button {
+            padding: 10px;
+            position: relative;
+            border-radius: 12px;
 
-        @media (max-width: 480px) {
-            padding: 6px !important;
-            border-radius: 10px;
+            @media (max-width: 480px) {
+                padding: 6px;
+                border-radius: 10px;
 
-            :deep(svg) {
-                width: 18px;
-                height: 18px;
+                :deep(svg) {
+                    width: 18px;
+                    height: 18px;
+                }
             }
         }
     }
@@ -186,8 +188,10 @@ const toggleCart = () => {
     }
 
     .user-btn.is-auth {
-        padding: 0 !important;
-        border-color: var(--color-accent);
+        &.base-button {
+            padding: 0;
+            border-color: var(--color-accent);
+        }
     }
 
     .cart-btn {

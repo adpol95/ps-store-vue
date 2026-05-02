@@ -125,8 +125,8 @@ import { Header, NewsBlock, ProductGrid } from "@/widgets";
 <style scoped lang="scss">
 /* Override global layout constraints for the full-width legacy hero */
 :deep(.main-layout__content) {
-    max-width: 100% !important;
-    padding: 0 !important;
+    max-width: 100%;
+    padding: 0;
 }
 
 .home-page {

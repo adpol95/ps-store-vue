@@ -131,9 +131,9 @@ const setCategory = (category: NewsCategory | "all") => {
         }
     }
 
-    &__filter--active {
-        background-color: var(--color-accent) !important;
-        color: white !important;
+    &__filter--active.base-button {
+        background-color: var(--color-accent);
+        color: white;
     }
 
     &__loading {
