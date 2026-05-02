@@ -56,6 +56,7 @@ const handleSubmit = async () => {
                     v-model="userName"
                     placeholder="User name"
                     :disabled="isLoading"
+                    autocomplete="username"
                     required
                 />
             </div>
@@ -67,6 +68,7 @@ const handleSubmit = async () => {
                     type="password"
                     placeholder="Password"
                     :disabled="isLoading"
+                    autocomplete="current-password"
                     required
                 />
             </div>
